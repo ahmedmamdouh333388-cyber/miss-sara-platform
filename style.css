@@ -177,7 +177,7 @@ body {
     font-size: 12px;
 }
 
-/* مشغل الفيديو */
+/* مشغل الفيديو ومكونات الحماية */
 .video-header {
     display: flex;
     justify-content: flex-start;
@@ -202,3 +202,14 @@ body {
     height: 100%;
     border: 0;
 }
+
+/* طبقة عازلة تمنع الضغط على أيقونة فتح الفيديو في Google Drive */
+.drive-shield-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 65px;
+    z-index: 10;
+    background: transparent;
+    }
