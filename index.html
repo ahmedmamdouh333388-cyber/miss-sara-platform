@@ -3,59 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المس ساره - تحت الصيانة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-        body {
-            background-color: #0d1117;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-        .maintenance-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 16px;
-            padding: 40px 25px;
-            max-width: 450px;
-            width: 100%;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-        .icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            display: block;
-        }
-        h1 {
-            color: #f0883e;
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 800;
-        }
-        p {
-            color: #8b949e;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-    </style>
+    <title>منصة المس ساره</title>
+    <!-- خط القاهرة -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="maintenance-card">
-        <span class="icon">🛠️</span>
-        <h1>الموقع في صيانة</h1>
-        <p>الرجاء الانتظار حتى يتم إصلائحه والعودة للعمل قريباً.</p>
+    <!-- الواجهة الأولى: تسجيل الدخول -->
+    <div id="loginSection" class="card">
+        <a href="#" class="help-badge whatsapp-btn">مساعدة</a>
+        <h2 class="title">مرحبا بكم في منصة المس ساره</h2>
+        
+        <div class="avatar-container">
+            <img src="file_0000000091a8820ca739a54b10f9fd34.png" alt="شعار المنصة" class="avatar-img">
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="password" id="passwordInput" class="input-field" placeholder="ادخل كلمه السر للمتابعه" autocomplete="off" required>
+                <div id="errorMsg" class="error-msg">كلمة السر غير صحيحة!</div>
+            </div>
+
+            <button type="submit" class="btn-submit">دخول</button>
+        </form>
+
+        <a href="#" class="forgot-link whatsapp-btn">هل نسيت كلمه السر؟</a>
     </div>
 
+    <!-- الواجهة الثانية: المحاضرات -->
+    <div id="lecturesSection" class="dashboard-card hidden">
+        <a href="#" class="help-btn-top whatsapp-btn">مساعدة</a>
+        
+        <h2 class="dashboard-title">محاضرات منصة المس ساره</h2>
+
+        <div class="lectures-grid">
+            <!-- المحاضرة الأولى -->
+            <div id="lecture1Card" class="lecture-card active">
+                <div class="lecture-icon">📚</div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الأولى</h3>
+                    <p class="status-available">متاحة الآن - اضغط للمشاهدة</p>
+                </div>
+            </div>
+
+            <!-- المحاضرة الثانية -->
+            <div class="lecture-card disabled">
+                <div class="lecture-icon">🔒</div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الثانية</h3>
+                    <p class="status-soon">قريباً سيتم توافرها</p>
+                </div>
+            </div>
+
+            <!-- المحاضرة الثالثة -->
+            <div class="lecture-card disabled">
+                <div class="lecture-icon">🔒</div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الثالثة</h3>
+                    <p class="status-soon">قريباً سيتم توافرها</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الواجهة الثالثة: عرض الفيديو -->
+    <div id="videoSection" class="video-card hidden">
+        <div class="video-header">
+            <button id="backToLecturesBtn" class="btn-back">➔ العودة للمحاضرات</button>
+            <button id="fullscreenBtn" class="btn-fullscreen">عرض بملء الشاشة 📺</button>
+        </div>
+
+        <h2 class="video-title">المحاضرة الأولى</h2>
+        
+        <div class="video-wrapper">
+            <video id="lectureVideo" controls controlsList="nodownload" playsinline>
+                <source src="dd76cd6e14af86c4708ddb34f858d132.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
