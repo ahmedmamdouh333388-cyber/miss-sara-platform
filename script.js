@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const CORRECT_PASSWORD = "mssara";
+    const CORRECT_PASSWORD = "2468";
     const PHONE_NUMBER = "201225428692";
     const WHATSAPP_MESSAGE = encodeURIComponent("السلام عليكم 👋🏻\nكلمه السر تبع منصه مس ساره 🤍");
 
