@@ -48,11 +48,11 @@
             </div>
 
             <!-- المحاضرة الثانية -->
-            <div id="lecture2Card" class="lecture-card active">
-                <div class="lecture-icon">📚</div>
+            <div class="lecture-card disabled">
+                <div class="lecture-icon">🔒</div>
                 <div class="lecture-info">
                     <h3>المحاضرة الثانية</h3>
-                    <p class="status-available">متاحة الآن - اضغط للمشاهدة</p>
+                    <p class="status-soon">قريباً سيتم توافرها</p>
                 </div>
             </div>
 
@@ -71,16 +71,16 @@
     <div id="videoSection" class="video-card hidden">
         <div class="video-header">
             <button id="backToLecturesBtn" class="btn-back">➔ العودة للمحاضرات</button>
+            <button id="fullscreenBtn" class="btn-fullscreen">عرض بملء الشاشة 📺</button>
         </div>
 
-        <h2 id="videoTitle" class="video-title">المحاضرة الثانية</h2>
+        <h2 class="video-title">المحاضرة الأولى</h2>
         
         <div class="video-wrapper">
-            <iframe id="driveFrame" 
-                    src="https://drive.google.com/file/d/1TB75jnnymQN14oLm-k5eXqodXpaw8058/preview" 
-                    allow="autoplay; fullscreen" 
-                    allowfullscreen>
-            </iframe>
+            <video id="lectureVideo" controls controlsList="nodownload" playsinline>
+                <source src="90bbbd05f3f28500e7048508a1ad9b37.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
         </div>
     </div>
 
