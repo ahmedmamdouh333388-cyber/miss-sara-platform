@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoTitle = document.getElementById('videoTitle');
     const driveFrame = document.getElementById('driveFrame');
 
-    // روابط الفيديوهات المباشرة من Google Drive
+    // رابط فيديو المقطع
     const lecture1Url = "https://drive.google.com/file/d/1TB75jnnymQN14oLm-k5eXqodXpaw8058/preview";
     const lecture2Url = "https://drive.google.com/file/d/1TB75jnnymQN14oLm-k5eXqodXpaw8058/preview";
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // فتح المحاضرة الأولى
+    // المحاضرة الأولى
     if (lecture1Card) {
         lecture1Card.addEventListener('click', () => {
             videoTitle.textContent = "المحاضرة الأولى";
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // فتح المحاضرة الثانية
+    // المحاضرة الثانية
     if (lecture2Card) {
         lecture2Card.addEventListener('click', () => {
             videoTitle.textContent = "المحاضرة الثانية";
@@ -54,8 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLecturesBtn.addEventListener('click', () => {
             videoSection.classList.add('hidden');
             lecturesSection.classList.remove('hidden');
-            // إيقاف الفيديو عند الخروج
-            if (driveFrame) driveFrame.src = "";
         });
     }
 });
