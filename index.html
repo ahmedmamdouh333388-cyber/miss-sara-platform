@@ -3,123 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المنصة قيد الصيانة</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .card {
-            background: rgba(22, 27, 34, 0.8);
-            border: 1px solid #30363d;
-            border-radius: 20px;
-            padding: 40px 30px;
-            max-width: 480px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .icon-container {
-            position: relative;
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 25px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(56, 139, 253, 0.1);
-            border-radius: 50%;
-            border: 1px solid rgba(56, 139, 253, 0.3);
-        }
-
-        .gear {
-            font-size: 45px;
-            animation: spin 6s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .badge {
-            display: inline-block;
-            background: #238636;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: bold;
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            color: #58a6ff;
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        p {
-            color: #8b949e;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .status-bar {
-            background: #21262d;
-            border-radius: 10px;
-            height: 8px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress {
-            background: linear-gradient(90deg, #1f6beb, #58a6ff);
-            height: 100%;
-            width: 65%;
-            border-radius: 10px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-    </style>
+    <title>منصة المس ساره</title>
+    <!-- خط القاهرة ورابط أيقونات FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="card">
-        <div class="icon-container">
-            <span class="gear">⚙️</span>
-        </div>
-        <span class="badge">تحديث ونظام جديد</span>
-        <h1>التطبيق قيد الصيانة</h1>
-        <p>نقوم حالياً بإجراء بعض التحسينات والإصلاحات التقنية لضمان تقديم أفضل تجربة ممكنة. سيتم إعادة تشغيل التطبيق في أقرب وقت.</p>
+    <!-- خلفية تكنولوجية متحركة -->
+    <div class="tech-bg">
+        <div class="glow-circle sphere-1"></div>
+        <div class="glow-circle sphere-2"></div>
+    </div>
+
+    <!-- زر المساعدة العائم القابل للتحريك -->
+    <div id="draggableHelpBtn" class="floating-help-btn whatsapp-btn" title="تواصل للمساعدة">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>مساعدة</span>
+    </div>
+
+    <!-- الواجهة الأولى: تسجيل الدخول التكنولوجية -->
+    <div id="loginSection" class="card tech-card">
         
-        <div class="status-bar">
-            <div class="progress"></div>
+        <div class="avatar-container">
+            <div class="avatar-glow"></div>
+            <img src="file_0000000091a8820ca739a54b10f9fd34.png" alt="شعار المنصة" class="avatar-img">
+        </div>
+
+        <h2 class="title">مرحباً بكم في منصة <span class="highlight">المس ساره</span></h2>
+        <p class="subtitle">بوابتك للتعليم الحديث والذكي</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="passwordInput" class="input-field" placeholder="أدخل كلمة السر للمتابعة" autocomplete="off" required>
+            </div>
+            <div id="errorMsg" class="error-msg">كلمة السر غير صحيحة!</div>
+
+            <button type="submit" class="btn-submit">
+                <span>دخول</span>
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </button>
+        </form>
+
+        <a href="#" class="forgot-link whatsapp-btn">هل نسيت كلمة السر؟</a>
+    </div>
+
+    <!-- الواجهة الثانية: المحاضرات -->
+    <div id="lecturesSection" class="dashboard-card tech-card hidden">
+        <h2 class="dashboard-title">محاضرات منصة <span class="highlight">المس ساره</span></h2>
+
+        <div class="lectures-grid">
+            <!-- المحاضرة الأولى -->
+            <div id="lecture1Card" class="lecture-card active">
+                <div class="lecture-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الأولى</h3>
+                    <p class="status-available">متاحة الآن - اضغط للمشاهدة</p>
+                </div>
+            </div>
+
+            <!-- المحاضرة الثانية -->
+            <div class="lecture-card disabled">
+                <div class="lecture-icon"><i class="fa-solid fa-lock"></i></div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الثانية</h3>
+                    <p class="status-soon">قريباً سيتم توافرها</p>
+                </div>
+            </div>
+
+            <!-- المحاضرة الثالثة -->
+            <div class="lecture-card disabled">
+                <div class="lecture-icon"><i class="fa-solid fa-lock"></i></div>
+                <div class="lecture-info">
+                    <h3>المحاضرة الثالثة</h3>
+                    <p class="status-soon">قريباً سيتم توافرها</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- الواجهة الثالثة: عرض الفيديو -->
+    <div id="videoSection" class="video-card tech-card hidden">
+        <div class="video-header">
+            <button id="backToLecturesBtn" class="btn-back"><i class="fa-solid fa-arrow-right"></i> العودة للمحاضرات</button>
+            <button id="fullscreenBtn" class="btn-fullscreen">ملء الشاشة <i class="fa-solid fa-expand"></i></button>
+        </div>
+
+        <h2 class="video-title">المحاضرة الأولى</h2>
+        
+        <div class="video-wrapper">
+            <video id="lectureVideo" controls controlsList="nodownload" playsinline>
+                <source src="90bbbd05f3f28500e7048508a1ad9b37.mp4" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
