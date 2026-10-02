@@ -3,103 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة المس ساره</title>
-    <!-- خط القاهرة ورابط أيقونات FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>التطبيق تحت الصيانة | قريباً</title>
+    <!-- خط تجريدي عصري Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --bg-color: #0d0f17;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --primary-accent: #6366f1;
+            --secondary-accent: #a855f7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية نيون متحركة وديناميكية */
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .sphere-1 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            top: -50px;
+            right: -50px;
+            opacity: 0.3;
+        }
+
+        .sphere-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #06b6d4, var(--primary-accent));
+            bottom: -50px;
+            left: -50px;
+            opacity: 0.25;
+        }
+
+        /* الكارت الرئيسي - تأثير الزجاج Glassmorphism */
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 650px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            margin: 20px 0;
+        }
+
+        /* أيقونة الصيانة الحديثة */
+        .icon-box {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .icon-box i {
+            font-size: 38px;
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            color: #a5b4fc;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        p.description {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto 35px auto;
+        }
+
+        /* العداد التنازلي */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .time-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 18px;
+            min-width: 75px;
+        }
+
+        .time-card span.number {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .time-card span.label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* شريط التقدم */
+        .progress-section {
+            max-width: 450px;
+            margin: 0 auto 35px auto;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 78%; /* يمكنك تغيير نسبة الإنجاز من هنا */
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* نموذج الاشتراك للحصول على تنبيه */
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            max-width: 420px;
+            margin: 0 auto 35px auto;
+        }
+
+        .subscribe-form input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 18px;
+            color: var(--text-main);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .subscribe-form input:focus {
+            border-color: var(--primary-accent);
+        }
+
+        .subscribe-form button {
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .subscribe-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* روابط التواصل الاجتماعي */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+            border-color: var(--primary-accent);
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 35px 20px; }
+            h1 { font-size: 24px; }
+            .subscribe-form { flex-direction: column; }
+            .time-card { min-width: 60px; padding: 8px; }
+            .time-card span.number { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- خلفية تكنولوجية متحركة -->
-    <div class="tech-bg">
-        <div class="glow-circle sphere-1"></div>
-        <div class="glow-circle sphere-2"></div>
-    </div>
+    <!-- عناصر الإضاءة الخلفية -->
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
 
-    <!-- زر المساعدة الدائري العائم والقابل للتحريك -->
-    <div id="draggableHelpBtn" class="floating-help-btn" title="تواصل معنا عبر واتساب">
-        <i class="fa-brands fa-whatsapp"></i>
-    </div>
-
-    <!-- الواجهة الأولى: تسجيل الدخول التكنولوجية -->
-    <div id="loginSection" class="card tech-card">
+    <div class="container">
         
-        <div class="avatar-container">
-            <div class="avatar-glow"></div>
-            <img src="file_0000000091a8820ca739a54b10f9fd34.png" alt="شعار المنصة" class="avatar-img">
+        <!-- أيقونة متطورة -->
+        <div class="icon-box">
+            <i class="fa-solid fa-code-merge"></i>
         </div>
 
-        <h2 class="title">مرحباً بكم في منصة <span class="highlight">المس ساره</span></h2>
-        <p class="subtitle">بوابتك للتعليم الحديث والذكي</p>
+        <!-- حالة النظام -->
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>تحديثات النظام جارية الآن</span>
+        </div>
 
-        <form id="loginForm">
-            <div class="input-group">
-                <i class="fa-solid fa-lock input-icon"></i>
-                <input type="password" id="passwordInput" class="input-field" placeholder="أدخل كلمة السر للمتابعة" autocomplete="off" required>
+        <h1>التطبيق يخضع لصيانة دورية</h1>
+        <p class="description">نعمل حالياً على إضافة مميزات جديدة وتطوير الأداء لنمنحك تجربة أفضل وأسرع. سنعود للعمل مجدداً قريباً جداً!</p>
+
+        <!-- العداد التنازلي -->
+        <div class="countdown">
+            <div class="time-card">
+                <span class="number" id="hours">02</span>
+                <span class="label">ساعة</span>
             </div>
-            <div id="errorMsg" class="error-msg">كلمة السر غير صحيحة!</div>
+            <div class="time-card">
+                <span class="number" id="minutes">45</span>
+                <span class="label">دقيقة</span>
+            </div>
+            <div class="time-card">
+                <span class="number" id="seconds">12</span>
+                <span class="label">ثانية</span>
+            </div>
+        </div>
 
-            <button type="submit" class="btn-submit">
-                <span>دخول</span>
-                <i class="fa-solid fa-right-to-bracket"></i>
-            </button>
+        <!-- شريط تقدم العمليات -->
+        <div class="progress-section">
+            <div class="progress-info">
+                <span>نسبة اكتمال الصيانة</span>
+                <span>78%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill"></div>
+            </div>
+        </div>
+
+        <!-- نموذج إشعار عند الانتهاء -->
+        <form class="subscribe-form" onsubmit="handleSubscribe(event)">
+            <input type="email" placeholder="أدخل بريدك الإلكتروني ليصلك تنبيه..." required>
+            <button type="submit">نبهني عند الجاهزية</button>
         </form>
 
-        <a href="#" class="forgot-link whatsapp-trigger">هل نسيت كلمة السر؟</a>
-    </div>
-
-    <!-- الواجهة الثانية: المحاضرات -->
-    <div id="lecturesSection" class="dashboard-card tech-card hidden">
-        <h2 class="dashboard-title">محاضرات منصة <span class="highlight">المس ساره</span></h2>
-
-        <div class="lectures-grid">
-            <!-- المحاضرة الأولى -->
-            <div id="lecture1Card" class="lecture-card active">
-                <div class="lecture-icon"><i class="fa-solid fa-book-open"></i></div>
-                <div class="lecture-info">
-                    <h3>المحاضرة الأولى</h3>
-                    <p class="status-available">متاحة الآن - اضغط للمشاهدة</p>
-                </div>
-            </div>
-
-            <!-- المحاضرة الثانية -->
-            <div class="lecture-card disabled">
-                <div class="lecture-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="lecture-info">
-                    <h3>المحاضرة الثانية</h3>
-                    <p class="status-soon">قريباً سيتم توافرها</p>
-                </div>
-            </div>
-
-            <!-- المحاضرة الثالثة -->
-            <div class="lecture-card disabled">
-                <div class="lecture-icon"><i class="fa-solid fa-lock"></i></div>
-                <div class="lecture-info">
-                    <h3>المحاضرة الثالثة</h3>
-                    <p class="status-soon">قريباً سيتم توافرها</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- الواجهة الثالثة: عرض الفيديو -->
-    <div id="videoSection" class="video-card tech-card hidden">
-        <div class="video-header">
-            <button id="backToLecturesBtn" class="btn-back"><i class="fa-solid fa-arrow-right"></i> العودة للمحاضرات</button>
-            <button id="fullscreenBtn" class="btn-fullscreen">ملء الشاشة <i class="fa-solid fa-expand"></i></button>
+        <!-- شبكات التواصل الاجتماعي -->
+        <div class="social-links">
+            <a href="#" class="social-link" title="تويتر / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-link" title="تلجرام"><i class="fa-brands fa-telegram"></i></a>
+            <a href="#" class="social-link" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-link" title="الدعم الفني"><i class="fa-solid fa-headset"></i></a>
         </div>
 
-        <h2 class="video-title">المحاضرة الأولى</h2>
-        
-        <div class="video-wrapper">
-            <video id="lectureVideo" controls controlsList="nodownload" playsinline>
-                <source src="90bbbd05f3f28500e7048508a1ad9b37.mp4" type="video/mp4">
-                متصفحك لا يدعم تشغيل الفيديو.
-            </video>
-        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // برمجة عداد تنازلي بسيط للتجربة (يمكنك ضبط الوقت كما تشاء)
+        let targetTime = new Date().getTime() + (2 * 60 * 60 * 1000) + (45 * 60 * 1000); // إضافـة ساعتين و 45 دقيقة
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetTime - now;
+
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (difference < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown").innerHTML = "<b style='color:#22c55e;'>جاري إعادة تشغيل الخوادم...</b>";
+            }
+        }, 1000);
+
+        // رسالة عند تسجيل البريد الإلكتروني
+        function handleSubscribe(e) {
+            e.preventDefault();
+            alert("شكراً لك! سنقوم بإرسال إشعار لك فور عودة التطبيق للعمل.");
+        }
+    </script>
 </body>
 </html>
